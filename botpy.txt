@@ -1,7 +1,9 @@
 import requests
+import time
+import re
 
-ACCESS_TOKEN = 'AQUI_TU_TOKEN'
-PAGE_ID = 'AQUI_TU_ID_PAGINA'
+ACCESS_TOKEN = 'TU_TOKEN'
+PAGE_ID = 'TU_ID_DE_PAGINA'
 
 def publicar_en_facebook(mensaje):
     url = f"https://graph.facebook.com/{PAGE_ID}/feed"
@@ -12,6 +14,20 @@ def publicar_en_facebook(mensaje):
     response = requests.post(url, data=payload)
     print(response.json())
 
-if __name__ == "__main__":
-    mensaje = "📢 Nueva oferta de empleo en Jujuy:\nEmpresa: Ejemplo S.A.\nPuesto: Administrativo\nMás info en: https://ejemplo.com"
-    publicar_en_facebook(mensaje)
+# Simulando publicaciones extraídas de múltiples fuentes
+publicaciones = [
+    {"titulo": "Administrativo", "descripcion": "Empresa en Jujuy busca personal", "ubicacion": "San Salvador de Jujuy"},
+    {"titulo": "Contador", "descripcion": "Trabajo en Buenos Aires", "ubicacion": "CABA"},
+    {"titulo": "Operario", "descripcion": "Puesto disponible en Palpalá", "ubicacion": "Jujuy"},
+    {"titulo": "Desarrollador", "descripcion": "Remote work", "ubicacion": "Mendoza"},
+]
+
+for pub in publicaciones:
+    ubicacion = pub.get("ubicacion", "").lower()
+    if "jujuy" in ubicacion:
+        mensaje = f"📢 Nueva oferta de empleo en Jujuy:
+📌 Empresa: Ejemplo S.A.
+💼 Puesto: {pub['titulo']}
+📍 Ubicación: {pub['ubicacion']}
+📝 Descripción: {pub['descripcion']}"
+        publicar_en_facebook(mensaje)
