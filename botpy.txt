@@ -2,8 +2,8 @@ import requests
 import time
 import re
 
-ACCESS_TOKEN = 'TU_TOKEN'
-PAGE_ID = 'TU_ID_DE_PAGINA'
+ACCESS_TOKEN = 'EAAKQHZCKydhQBOxgqOWlEXEKIL1H42UZAwPNnWSOq2RvqOZAyJqwvz5gEZAFkboDUrx83ncZBWyEwqYivAnoqijbYgWupEClPpU7E7wMeFrcGklFbGRoyeZA99wWZCqwGmEGihsBLXmZCfHQCNzqI2tOvsPGzdU7MkQ7ZA8owXM4YkMaxsyKcZA28FWVkL4dEXYfEeNWETTmptjhO4pSkH9qlKwacx2fwJlcAZD'
+PAGE_ID = 'https://www.facebook.com/profile.php?id=61576849395556'
 
 def publicar_en_facebook(mensaje):
     url = f"https://graph.facebook.com/{PAGE_ID}/feed"
